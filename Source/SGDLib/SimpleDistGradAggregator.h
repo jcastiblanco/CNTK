@@ -368,14 +368,7 @@ private:
         }
 
         // Broadcast the aggregated header to all nodes
-        if (!m_nccl.IsSupported())
-        {
-            MPI_Bcast(headerCPU, headerCPU->Size(), MPI_CHAR, m_mpi->MainNodeRank(), m_mpi->Communicator()) || MpiFail("MPI_Bcast");
-        }
-        else
-        {
-            m_nccl.Broadcast(headerCPU, headerCPU->Size(), MPI_CHAR, m_mpi->MainNodeRank());
-        }
+        MPI_Bcast(headerCPU, headerCPU->Size(), MPI_CHAR, m_mpi->MainNodeRank(), m_mpi->Communicator()) || MpiFail("MPI_Bcast");
 
         if (m_nccl.IsSupported())
         {
