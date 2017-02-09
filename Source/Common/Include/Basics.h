@@ -81,7 +81,7 @@ __declspec_noreturn static inline void ThrowFormatted(const char* format, ...)
     // Note: The call stack will skip 2 levels to suppress this function and its call sites (XXXError()).
     //       If more layers are added here, it would have to be adjusted.
     // TODO: Change ExceptionWithCallStack to take a parameter how many levels to skip.
-    throw ExceptionWithCallStack<E>(buffer, ExceptionWithCallStack<E>::GetCallStack(/*skipLevels=*/2, /*makeFunctionNamesStandOut=*/true));
+    throw ExceptionWithCallStack<E>(buffer, DebugUtil::GetCallStack(/*skipLevels=*/2, /*makeFunctionNamesStandOut=*/true));
 };
 #pragma warning(pop)
 
